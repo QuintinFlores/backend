@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\controllers\AuthController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UsuarioController;
 
 
 
@@ -16,12 +17,16 @@ Route::prefix('v1/auth/')->group(function(){
     Route::post("/login", [AuthController::class, "funIngresar"]);
     Route::post("/register", [AuthController::class, "funRegistro"]);
     
-    Route::middleware('auth:sanctum')->group(function (){
+   Route::middleware('auth:sanctum')->group(function (){
       Route::get("/profile", [AuthController::class, "funPerfil"]);
       Route::post("/logout", [AuthController::class, "funSalir"]);
-    });
-    
+    });  
     
 });
+  Route::middleware('auth:sanctum')->group(function (){
+    //usuario
+    Route::apiResource("usuario", UsuarioController::class); 
+   
+  });  
 
 

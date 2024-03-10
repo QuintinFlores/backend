@@ -51,6 +51,7 @@ class AuthController extends Controller
     public function funSalir(){
         Auth::user()->tokens()->delete();
         return response()->json(["message" => "Salio el Usuario"], 200);
+
     }
 
 }
